@@ -9,6 +9,12 @@
     <div class="box" style="margin-top: 14%;">
 
         <h1>Login</h1>
+
+        {% for message in messages %}
+        <h5 style="color:red; padding-left: -20px;">{{message}}</h5>
+        {% endfor %}
+
+        
         {% csrf_token %}
         <a>Username</a>
         <input class="username" type="text" name="username" placeholder="Username" required="">

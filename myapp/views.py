@@ -10,8 +10,7 @@ from .models import Features
 
 def index(request):
 
-
-    return render(request, 'index.html')\
+    return render(request, 'index.html')
 
 def register(request):
 
@@ -33,7 +32,7 @@ def register(request):
                 user.save()
                 return redirect('login')
         else:
-            messages.info(request, 'Passowrd not same')
+            messages.info(request, 'Password not same')
             return redirect('register')
     else:
         return render(request, 'register.html')
@@ -52,7 +51,7 @@ def login(request):
             return redirect('/')
         else:
             messages.info(request, 'Invalid Login')
-            return redirect('/login')
+            return redirect('login')
     else:
         return render(request, 'login.html')
 

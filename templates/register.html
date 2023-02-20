@@ -10,6 +10,10 @@
     <div class="box" style="margin-top: 10%;">
         <h1>Sign Up</h1>
 
+        {% for message in messages %}
+        <h5 style="color:red; padding-left: -20px;">{{message}}</h5>
+        {% endfor %}
+
         <a>Username</a>
         <input type="username" name="username"  onFocus="field_focus(this, 'username');"
             onblur="field_blur(this, 'username');" class="username" />
@@ -35,9 +39,7 @@
         <a>
             <button class="btn" type="submit">Sign Up</button>
         </a>
-        {% for message in messages %}
-        <h5 style="color:red; padding-left: -20px;">{{message}}</h5>
-        {% endfor %}
+        
         <p>
             <a href="login">You have an Account? Login Now!</a>
         </p>
