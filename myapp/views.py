@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages, auth
 from .models import Features
+from .forms import AddProduct
 
 
 
@@ -10,7 +11,8 @@ from .models import Features
 
 def index(request):
 
-    return render(request, 'index.html')
+    feature = Features.objects.all()
+    return render(request, 'index.html', {'feature': feature})
 
 def register(request):
 
@@ -60,3 +62,27 @@ def logout(request):
     auth.logout(request)
     return redirect( '/')
 
+def term_of_service(request):
+
+    return render(request, 'term_of_service.html')
+
+def manage_admin(request):
+
+    user = User.objects.all()
+
+    return render(request, 'manage_admin.html')
+
+def manage_product(request):
+
+    feature = Features.objects.all()
+    return render(request, 'manage_product.html', {'feature': feature}) 
+
+
+def add_product(request):
+
+    submitted == False
+
+    if request.Method == 'POST':
+        form = AddProduct(request)
+        if form.is_valid():
+            product = form.save(commit=False)
