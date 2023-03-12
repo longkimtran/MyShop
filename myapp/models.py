@@ -9,3 +9,6 @@ class Features(models.Model):
     price = models.DecimalField(max_digits=18, decimal_places=2)
     feature_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
+class displayusers(models.Model):
+
+    username = models.CharField(max_length=100)

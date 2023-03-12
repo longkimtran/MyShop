@@ -10,5 +10,7 @@ urlpatterns =[
     path('register', views.register, name='register'),
     path('manage_admin', views.manage_admin, name='mange_admin'),
     path('manage_product', views.manage_product, name='mange_product'),
+    path('add_product', views.add_product, name='add_product'),
+    path('search_products', views.search_products, name='search_products'),
 
 ]

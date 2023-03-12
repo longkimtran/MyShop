@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'css/managepage.css' %}" />
+<link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -26,6 +27,7 @@ $(document).ready(function(){
 <body>
 <div class="container-xl">
     <div class="table-responsive">
+        {% csrf_token %}
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -33,7 +35,7 @@ $(document).ready(function(){
                         <h2>User <b>Management</b></h2>
                     </div>
                     <div class="col-sm-7">
-                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>	
+                        <a href="http://localhost:8000/admin/auth/user/add/ " class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New User</span></a>	
                         <input type=button class="btn btn-secondary" value="Back To Store" onClick="javascript:history.go(-1);">
                     </div>
                 </div>
@@ -41,22 +43,18 @@ $(document).ready(function(){
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>						
-                        <th>Date Created</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>No.</th>
+                        <th>Name</th>	
+                        <th>Email</th>					
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    {% if user in User %}
+                    {% if user in displayusers %}
                     <tr>
-                        <td>1</td>
-                        <td><a href="#">{{user.username}}</a></td>
-                        <td>{{user.date_created}}</td>                        
-                        <td>{{user.role}}</td>
-                        <td><span class="status text-success">&bull;</span> Active</td>
+                        <td>{{user.id}}</td>
+                        <td>{{user.username}}</a></td>
+                        <td>{{user.email}}</td>            
                         <td>
                             <a href="#" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
                             <a href="#" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>

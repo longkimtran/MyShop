@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+#from django.contrib.auth import get_user_model
 from django.contrib import messages, auth
-from .models import Features
+from .models import Features, displayusers
 from .forms import AddProduct
-
+from django.template import loader
 
 
 # Create your views here.
@@ -69,20 +70,30 @@ def term_of_service(request):
 def manage_admin(request):
 
     user = User.objects.all()
-
-    return render(request, 'manage_admin.html')
+    template = loader.get_template('manage_admin.html')
+    context = {'displayusers': user}
+    return HttpResponse(template.render(context,request))
 
 def manage_product(request):
 
-    feature = Features.objects.all()
-    return render(request, 'manage_product.html', {'feature': feature}) 
+    features = Features.objects.all()
+    template = loader.get_template('manage_product.html')
+    context = {'features': features,}
+    return HttpResponse(template.render(context, request))
 
 
 def add_product(request):
 
-    submitted == False
+    return render(request, 'add_product.html')
 
-    if request.Method == 'POST':
-        form = AddProduct(request)
-        if form.is_valid():
-            product = form.save(commit=False)
+def search_products(request):
+    
+    if request.method == 'POST':
+
+        searched = request.POST['searched']
+        products = Features.objects.filter(name__contains=searched)
+        return render(request, 'manage_product', {'searched': searched, 'products': products})
+    
+    else:
+        return render(request, 'manage_product', {})
+

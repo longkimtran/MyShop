@@ -94,6 +94,7 @@
         </header>
         <!-- Section-->
         <section class="py-5">
+            {% csrf_token %}
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     {% for feature in feature %}
@@ -108,7 +109,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">{{feature.name}}</h5>
+                                    <h5  class="fw-bolder"><a href="#" style="text-decoration: none; color:black">{{feature.name}}</a></h5>
                                     <!-- Product reviews-->
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
